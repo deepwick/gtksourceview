@@ -73,7 +73,7 @@
   <style name="def:net-address" foreground="orange" underline="single"/>
   <style name="def:error" foreground="red" underline="error"/>
   <style name="def:reserved" foreground="red"/>
-  <style name="def:deletion" foreground="red" strikethrough="true"/>
+  <style name="def:deletion" foreground="red"/>
   <style name="def:insertion" foreground="green"/>
   <style name="def:note" foreground="background" background="yellow" bold="true"/>
   <style name="python:module-handler" foreground="magenta"/>

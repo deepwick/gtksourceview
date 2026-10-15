@@ -31,7 +31,7 @@ GLOBAL = [
 ]
 CURRENT_LINE_NUMBER = {
     5: {"foreground": "foreground", "background": "surface"},
-    4: {"background": "surface"},
+    4: {"background": "background"},
 }
 SYNTAX = [
     ("def:comment", {"foreground": "comment", "italic": "true"}),
@@ -62,7 +62,7 @@ SYNTAX = [
     ("def:net-address", {"foreground": "orange", "underline": "single"}),
     ("def:error", {"foreground": "red", "underline": "error"}),
     ("def:reserved", {"foreground": "red"}),
-    ("def:deletion", {"foreground": "red", "strikethrough": "true"}),
+    ("def:deletion", {"foreground": "red"}),
     ("def:insertion", {"foreground": "green"}),
     ("def:note", {"foreground": "background", "background": "yellow", "bold": "true"}),
     ("python:module-handler", {"foreground": "magenta"}),

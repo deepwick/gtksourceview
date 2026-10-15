@@ -194,3 +194,52 @@ def test_gsv4_render_without_scheme_is_not_deepwick(tmp_path):
     empty.mkdir()
     counts = render(tmp_path, empty)
     assert px(counts, "background") < 500
+
+
+RNG = Path("/usr/share/gtksourceview-4/styles/styles.rng")
+
+
+@pytest.mark.skipif(not (RNG.exists() and shutil.which("xmllint")), reason="needs styles.rng and xmllint")
+def test_gsv4_validates_against_styles_rng():
+    result = subprocess.run(["xmllint", "--noout", "--relaxng", str(RNG), str(FILES[4])], capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr
+
+
+def test_gsv4_current_line_number_contrast():
+    from deepwick_spec.color import contrast_ratio
+    style = resolved_styles(4)["current-line-number"]
+    assert contrast_ratio(C["muted"], style.get("background", C["background"])) >= 4.5
+
+
+@pytest.mark.parametrize("version", [5, 4])
+def test_deletion_is_red_only(version):
+    style = resolved_styles(version)["def:deletion"]
+    assert style.get("foreground", "").lower() == C["red"].lower()
+    assert "strikethrough" not in style
+
+
+def _runtime_available():
+    return shutil.which("flatpak") and subprocess.run(
+        ["flatpak", "info", "org.gnome.Platform//51"], capture_output=True).returncode == 0
+
+
+@pytest.mark.skipif(not _runtime_available(), reason="needs the GNOME 51 flatpak runtime")
+def test_gsv5_scheme_loads(tmp_path):
+    code = (
+        "import sys, gi\n"
+        "gi.require_version('GtkSource', '5')\n"
+        "from gi.repository import GtkSource\n"
+        "m = GtkSource.StyleSchemeManager()\n"
+        "m.set_search_path([sys.argv[1]])\n"
+        "s = m.get_scheme('deepwick')\n"
+        "st = s.get_style('def:comment')\n"
+        "print(s.get_name(), s.get_metadata('variant'), st.props.foreground, st.props.italic)\n"
+    )
+    result = subprocess.run(
+        ["flatpak", "run", f"--filesystem={FILES[5].parent}:ro", "--command=python3", "org.gnome.Platform//51",
+         "-c", code, str(FILES[5].parent)],
+        capture_output=True, text=True, env={**os.environ, "HOME": str(tmp_path)}, timeout=60,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "could not load" not in result.stderr
+    assert result.stdout.split() == ["Deepwick", "dark", C["comment"], "True"]

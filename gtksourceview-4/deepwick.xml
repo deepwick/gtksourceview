@@ -31,7 +31,7 @@
   <style name="cursor" foreground="foreground"/>
   <style name="secondary-cursor" foreground="muted"/>
   <style name="current-line" background="surface"/>
-  <style name="current-line-number" background="surface"/>
+  <style name="current-line-number" background="background"/>
   <style name="line-numbers" foreground="muted" background="background"/>
   <style name="line-numbers-border" background="background"/>
   <style name="right-margin" foreground="overlay"/>
@@ -70,7 +70,7 @@
   <style name="def:net-address" foreground="orange" underline="single"/>
   <style name="def:error" foreground="red" underline="error"/>
   <style name="def:reserved" foreground="red"/>
-  <style name="def:deletion" foreground="red" strikethrough="true"/>
+  <style name="def:deletion" foreground="red"/>
   <style name="def:insertion" foreground="green"/>
   <style name="def:note" foreground="background" background="yellow" bold="true"/>
   <style name="python:module-handler" foreground="magenta"/>
