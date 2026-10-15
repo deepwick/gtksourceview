@@ -27,6 +27,7 @@ EXPECTED = {
     "def:comment": ("comment", None),
     "def:keyword": ("blue", None),
     "def:statement": ("magenta", None),
+    "def:operator": ("foreground", None),
     "def:type": ("teal", None),
     "def:function": ("yellow", None),
     "def:identifier": ("lightBlue", None),

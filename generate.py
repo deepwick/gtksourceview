@@ -41,6 +41,7 @@ SYNTAX = [
     ("def:special-constant", {"foreground": "blue"}),
     ("def:boolean", {"foreground": "blue"}),
     ("def:statement", {"foreground": "magenta"}),
+    ("def:operator", {"foreground": "foreground"}),
     ("def:type", {"foreground": "teal"}),
     ("def:function", {"foreground": "yellow"}),
     ("def:builtin", {"foreground": "yellow"}),

@@ -49,6 +49,7 @@
   <style name="def:special-constant" foreground="blue"/>
   <style name="def:boolean" foreground="blue"/>
   <style name="def:statement" foreground="magenta"/>
+  <style name="def:operator" foreground="foreground"/>
   <style name="def:type" foreground="teal"/>
   <style name="def:function" foreground="yellow"/>
   <style name="def:builtin" foreground="yellow"/>
